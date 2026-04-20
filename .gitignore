@@ -1,0 +1,21 @@
+# Docker
+.docker
+*.log
+.env
+
+# Data volumes (Ignore actual data, keep config)
+object-storage-server/data/
+relational-database-server/data/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node
+node_modules/
+dist/

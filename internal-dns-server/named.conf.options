@@ -1,0 +1,6 @@
+options {
+    allow-query { any; };
+    recursion yes;
+    listen-on { any; };
+    listen-on-v6 { any; };
+};
