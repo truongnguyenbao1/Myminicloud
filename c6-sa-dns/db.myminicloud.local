@@ -1,0 +1,13 @@
+$TTL 1H
+@   IN SOA  ns.myminicloud.local. admin.myminicloud.local. ( 1 1H 15M 1W 1H )
+    IN NS   ns.myminicloud.local.
+ns  IN A    127.0.0.1
+c1-sa-web IN A 10.10.10.10
+c2-sa-app IN A 10.10.10.11
+c3-sa-db IN A 10.10.10.12
+c4-sa-auth IN A 10.10.10.13
+c5-sa-storage IN A 10.10.10.14
+c6-sa-dns IN A 10.10.10.15
+c7-sa-prometheus IN A 10.10.10.16
+c8-sa-grafana IN A 10.10.10.17
+c9-sa-gateway IN A 10.10.10.18

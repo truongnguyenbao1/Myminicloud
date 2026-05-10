@@ -1,37 +1,37 @@
 networks: { cloud-net: { name: cloud-net } }
 
 services:
-  web-frontend-server:
-    build: ./web-frontend-server
+  c1-sa-web:
+    build: ./c1-sa-web
     image: hotensv/web:dev
-    container_name: web-frontend-server
+    container_name: c1-sa-web
     networks: [ cloud-net ]
     ports: [ "8080:80" ]
 
-  application-backend-server:
-    build: ./application-backend-server
+  c2-sa-app:
+    build: ./c2-sa-app
     image: hotensv/app:dev
-    container_name: application-backend-server
+    container_name: c2-sa-app
     networks: [ cloud-net ]
     ports: [ "8085:8081" ]
     environment:
-      OIDC_ISSUER: "http://authentication-identity-server:8080/realms/master"
+      OIDC_ISSUER: "http://c4-sa-auth:8080/realms/master"
       OIDC_AUDIENCE: "myapp"
 
-  relational-database-server:
+  c3-sa-db:
     image: mariadb:11
-    container_name: relational-database-server
+    container_name: c3-sa-db
     environment:
       MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: minicloud
     volumes:
-      - ./relational-database-server/init:/docker-entrypoint-initdb.d:ro
+      - ./c3-sa-db/init:/docker-entrypoint-initdb.d:ro
     ports: [ "3306:3306" ]
     networks: [ cloud-net ]
 
-  authentication-identity-server:
+  c4-sa-auth:
     image: quay.io/keycloak/keycloak:latest
-    container_name: authentication-identity-server
+    container_name: c4-sa-auth
     command: [ "start-dev" ]
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
@@ -43,61 +43,61 @@ services:
     restart: unless-stopped
     networks: [ cloud-net ]
 
-  object-storage-server:
+  c5-sa-storage:
     image: minio/minio
-    container_name: object-storage-server
+    container_name: c5-sa-storage
     command: [ "server", "/data", "--console-address", ":9001" ]
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
     volumes:
-      - ./object-storage-server/data:/data
+      - ./c5-sa-storage/data:/data
     ports: [ "9000:9000", "9001:9001" ]
     networks: [ cloud-net ]
 
-  internal-dns-server:
+  c6-sa-dns:
     image: internetsystemsconsortium/bind9:9.18
-    container_name: internal-dns-server
+    container_name: c6-sa-dns
     user: root
 
     ports: [ "1053:53/udp" ]
     volumes:
-      - ./internal-dns-server/named.conf:/etc/bind/named.conf:ro
-      - ./internal-dns-server/named.conf.local:/etc/bind/named.conf.local:ro
-      - ./internal-dns-server/db.cloud.local:/etc/bind/db.cloud.local:ro
+      - ./c6-sa-dns/named.conf:/etc/bind/named.conf:ro
+      - ./c6-sa-dns/named.conf.local:/etc/bind/named.conf.local:ro
+      - ./c6-sa-dns/db.myminicloud.local:/etc/bind/db.myminicloud.local:ro
     networks: [ cloud-net ]
 
-  monitoring-node-exporter-server:
+  c7-sa-exporter:
     image: prom/node-exporter:latest
-    container_name: monitoring-node-exporter-server
+    container_name: c7-sa-exporter
     ports: [ "9100:9100" ]
     networks: [ cloud-net ]
 
-  monitoring-prometheus-server:
+  c7-sa-prometheus:
     image: prom/prometheus:latest
-    container_name: monitoring-prometheus-server
+    container_name: c7-sa-prometheus
     ports: [ "9090:9090" ]
     volumes:
-      - ./monitoring-prometheus-server/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./c7-sa-prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     networks: [ cloud-net ]
 
-  monitoring-grafana-dashboard-server:
+  c8-sa-grafana:
     image: grafana/grafana:latest
-    container_name: monitoring-grafana-dashboard-server
+    container_name: c8-sa-grafana
     ports: [ "3000:3000" ]
     volumes:
-      - ./monitoring-grafana-dashboard-server/provisioning:/etc/grafana/provisioning
+      - ./c8-sa-grafana/provisioning:/etc/grafana/provisioning
     networks: [ cloud-net ]
 
-  api-gateway-proxy-server:
+  c9-sa-gateway:
     image: nginx:stable
-    container_name: api-gateway-proxy-server
+    container_name: c9-sa-gateway
     depends_on:
-      - web-frontend-server
-      - application-backend-server
-      - authentication-identity-server
+      - c1-sa-web
+      - c2-sa-app
+      - c4-sa-auth
     ports: [ "80:80" ]
     volumes:
-      - ./api-gateway-proxy-server/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./c9-sa-gateway/nginx.conf:/etc/nginx/nginx.conf:ro
     networks: [ cloud-net ]
     restart: unless-stopped

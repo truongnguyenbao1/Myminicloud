@@ -4,8 +4,14 @@
 .env
 
 # Data volumes (Ignore actual data, keep config)
-object-storage-server/data/
-relational-database-server/data/
+c5-sa-storage/data/
+c3-sa-db/data/
+
+# Temporary files
+report_text.txt
+temp_report.zip
+temp_docx_extract/
+report_text_utf8.txt
 
 # OS files
 .DS_Store
