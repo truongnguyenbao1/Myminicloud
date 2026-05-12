@@ -98,8 +98,11 @@ services:
       - c1-sa-web
       - c2-sa-app
       - c4-sa-auth
-    ports: [ "80:80" ]
+    ports: 
+      - "80:80"
+      - "443:443"
     volumes:
       - ./c9-sa-gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks: [ cloud-net ]
     restart: unless-stopped
