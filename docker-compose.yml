@@ -7,6 +7,8 @@ services:
     container_name: c1-sa-web
     networks: [ cloud-net ]
     ports: [ "8080:80" ]
+    volumes:
+      - ./c1-sa-web/html:/usr/share/nginx/html:ro
 
   c2-sa-app:
     build: ./c2-sa-app
@@ -36,7 +38,7 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
-      KC_HOSTNAME: "Public-IP-EC2"
+      KC_HOSTNAME: "localhost"
       KC_HOSTNAME_STRICT: "false"
       KC_HTTP_ENABLED: "true"
     ports: [ "8081:8080" ]

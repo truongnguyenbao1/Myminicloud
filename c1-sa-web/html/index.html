@@ -1,1 +1,178 @@
-<h1>MyMiniCloud - Home</h1><a href="/blog/">Blog</a>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUONG NGUYEN BAO | Software Developer</title>
+    <meta name="description" content="Portfolio cá nhân của Trương Nguyễn Bảo - Lập trình viên đam mê Cloud & Backend.">
+    <link rel="stylesheet" href="/src/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/keycloak-js@24.0.4/dist/keycloak.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav id="main-nav">
+            <div class="nav-content">
+                <div class="logo">TNBao.dev</div>
+                <ul class="nav-links">
+                    <li><a href="#hero">Trang chủ</a></li>
+                    <li><a href="#about">Về tôi</a></li>
+                    <li><a href="#projects">Dự án</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="hero" class="hero-section">
+                <div class="profile-frame">
+                    <img src="/src/avt.png" alt="Trương Nguyễn Bảo" class="profile-img">
+                </div>
+
+                <h1>Chào bạn, tôi là TRUONG NGUYEN BAO</h1>
+
+                <div class="tw-wrap">
+                    <div id="tw-text" class="static-roles">
+                        <div>&gt; SYSTEM_INIT: SUCCESS</div>
+                        <div>&gt; CORE_SKILLS: JAVA, PYTHON, .NET, Dart, C#</div>
+                        <div>&gt; SPECIALTY: CLOUD_INFRA &amp; BACKEND</div>
+                        <div>&gt; STATUS: AVAILABLE_FOR_WORK</div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Xem Dự Án</a>
+                    <a href="#contact" class="btn btn-secondary">Liên hệ</a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="about-section">
+                <div class="section-header">
+                    <h2>Về Tôi</h2>
+                </div>
+
+                <div class="about-content">
+                    <p>
+                        Đây là không gian chia sẻ về hành trình, kỹ năng và những dự án tâm huyết của tôi.
+                        Tôi đam mê xây dựng hạ tầng đám mây, backend API và các hệ thống phân tán.
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-item" data-id="EXP_YEARS">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Năm Kinh Nghiệm</span>
+                        </div>
+                        <div class="stat-item" data-id="GH_REPOS">
+                            <span class="stat-number" id="repo-count">0</span>
+                            <span class="stat-label">Dự Án GitHub</span>
+                        </div>
+                        <div class="stat-item" data-id="GH_FOLLOW">
+                            <span class="stat-number" id="follower-count">0</span>
+                            <span class="stat-label">Người Theo Dõi</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="projects-section">
+                <div class="section-header">
+                    <h2>Dự Án Nổi Bật</h2>
+                </div>
+
+                <!-- MyMiniCloud Featured Card -->
+                <div class="featured-project-container">
+                    <div class="featured-card">
+                        <div class="featured-badge">FLAGSHIP PROJECT</div>
+                        <div class="featured-content">
+                            <div class="featured-text">
+                                <h3>MyMiniCloud</h3>
+                                <p class="featured-desc">
+                                    Hệ sinh thái đám mây mô phỏng hoàn chỉnh chạy trên Docker Compose.
+                                    Tích hợp 9 phân vùng dịch vụ từ Frontend, Backend đến Monitoring và Security.
+                                </p>
+                                <ul class="architecture-list">
+                                    <li><span>c1</span> Frontend (React)</li>
+                                    <li><span>c2</span> Backend (Python)</li>
+                                    <li><span>c3</span> Database (MariaDB/MinIO)</li>
+                                    <li><span>c4</span> Auth (Keycloak)</li>
+                                    <li><span>c6</span> DNS (BIND9)</li>
+                                    <li><span>c7-c8</span> Monitoring (Grafana/Prom)</li>
+                                    <li><span>c9</span> Gateway (Nginx)</li>
+                                </ul>
+                                <div class="project-tech featured-tech">
+                                    <span class="tech-tag">Docker</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Keycloak</span>
+                                    <span class="tech-tag">Grafana</span>
+                                    <span class="tech-tag">BIND9</span>
+                                </div>
+                                <a href="https://github.com/truongnguyenbao1/Myminicloud" target="_blank"
+                                    class="btn btn-primary featured-btn">
+                                    Xem trên GitHub →
+                                </a>
+                            </div>
+                            <div class="featured-visual">
+                                <div class="cloud-icon-animation">
+                                    <div class="server-node node-c1" title="c1-Frontend"></div>
+                                    <div class="server-node node-c2" title="c2-Backend"></div>
+                                    <div class="server-node node-c3" title="c3-Database"></div>
+                                    <div class="server-node node-c6" title="c6-DNS"></div>
+                                    <div class="server-node node-c9" title="c9-Gateway"></div>
+                                    <div class="center-glow"></div>
+                                    <div class="center-label">CLOUD</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other GitHub Projects -->
+                <div class="section-header secondary-header">
+                    <h2>Các Dự Án Khác</h2>
+                </div>
+                <div class="projects-grid" id="github-projects">
+                    <p>Đang tải dự án...</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer / Contact -->
+        <footer id="contact">
+            <p>© 2026 Trương Nguyên Bảo. Cảm ơn bạn đã ghé thăm.</p>
+            <div class="social-links">
+                <a href="https://zalo.me/0813872387" target="_blank">Zalo</a>
+                <a href="https://github.com/truongnguyenbao1" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/truong-nguyen-bao-aa8699401/" target="_blank">LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div id="ai-chatbot-widget">
+        <button id="chatbot-toggle">💬 AI Assistant</button>
+        <div id="chatbot-window" class="hidden">
+            <div class="chatbot-header">
+                <h3>AI Assistant</h3>
+                <button id="chatbot-close" aria-label="Đóng chatbot">✕</button>
+            </div>
+            <div id="chatbot-messages">
+                <div class="message bot-message">Chào bạn! Tôi là trợ lý AI của Bảo.</div>
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Nhập câu hỏi..." autocomplete="off">
+                <button id="chatbot-send">Gửi</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/projects.js"></script>
+    <script type="module" src="/src/chatbot.js"></script>
+</body>
+
+</html>
