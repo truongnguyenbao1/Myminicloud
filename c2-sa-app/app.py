@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 import time, requests, os
 from jose import jwt
 
-ISSUER   = os.getenv("OIDC_ISSUER",   "http://authentication-identity-server:8080/realms/master")
+ISSUER   = os.getenv("OIDC_ISSUER",   "http://c4-sa-auth:8080/realms/master")
 AUDIENCE = os.getenv("OIDC_AUDIENCE", "myapp")
 JWKS_URL = f"{ISSUER}/protocol/openid-connect/certs"
 
