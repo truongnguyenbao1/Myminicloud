@@ -3,39 +3,9 @@
  * Logic for mechanical sounds and UI interactions
  */
 
-// Cấu hình Keycloak
-let keycloak;
-
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("Đang kiểm tra hệ thống xác thực...");
-
-  if (typeof Keycloak === 'undefined') {
-    console.error("Lỗi: Không tìm thấy thư viện Keycloak! Vui lòng kiểm tra lại index.html.");
-    initializeApp(); // Vẫn chạy app nếu lỗi thư viện
-    return;
-  }
-
-  keycloak = new Keycloak({
-    url: 'http://localhost:8081',
-    realm: 'myminicloud',
-    clientId: 'web-portfolio'
-  });
-
-  keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
-    .then(authenticated => {
-      if (authenticated) {
-        console.log("Xác thực thành công!");
-        initializeApp();
-      } else {
-        console.warn("Chưa đăng nhập, đang chuyển hướng...");
-        keycloak.login();
-      }
-    })
-    .catch(err => {
-      console.error("Lỗi kết nối Keycloak Server (8081):", err);
-      console.log("Đang chạy chế độ khách (Guest Mode)...");
-      initializeApp();
-    });
+  console.log("Hệ thống khởi động (Chế độ Public)...");
+  initializeApp();
 });
 
 function initializeApp() {
