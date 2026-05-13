@@ -19,10 +19,8 @@ services:
       - c1-sa-web
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./c9-sa-gateway/nginx-web-only.conf:/etc/nginx/nginx.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - cloud-net
     restart: unless-stopped
