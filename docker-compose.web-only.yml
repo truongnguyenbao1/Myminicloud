@@ -1,0 +1,28 @@
+networks:
+  cloud-net:
+    name: cloud-net
+
+services:
+  c1-sa-web:
+    build: ./c1-sa-web
+    image: hotensv/web:dev
+    container_name: c1-sa-web
+    networks:
+      - cloud-net
+    volumes:
+      - ./c1-sa-web/html:/usr/share/nginx/html:ro
+
+  c9-sa-gateway:
+    image: nginx:stable
+    container_name: c9-sa-gateway
+    depends_on:
+      - c1-sa-web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./c9-sa-gateway/nginx-web-only.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - cloud-net
+    restart: unless-stopped
