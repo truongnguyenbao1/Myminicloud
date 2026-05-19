@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tnb.io.vn/sitemap.xml
